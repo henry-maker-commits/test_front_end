@@ -53,7 +53,7 @@
 </template>
 
 <script>
-// import {getContractList} from "@/api/test";
+import {getContractList} from "@/api/test";
 import ConnectWallet from "../components/ConnectWallet"
 export default {
   name: "testSolidity",
@@ -69,9 +69,9 @@ export default {
     }
   },
   created() {
-    // getContractList().then(res => {
-    //   this.addressArr = res
-    // })
+    getContractList().then(res => {
+      this.addressArr = res
+    })
     this.addressArr = []
     const files = require.context('../abi/', false, /.json$/).keys();
 

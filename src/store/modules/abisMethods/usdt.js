@@ -142,3 +142,15 @@ export default {
     state,
     actions
 }
+export default {
+    namespaced: true,
+    mutations,
+    state,
+    actions
+}
+export default {
+    namespaced: true,
+    mutations,
+    state,
+    actions
+}

@@ -1,7 +1,7 @@
 
 		import getContract from "@/utils/abiUtil";
 		function judgeToken(rootState) {
-			if (!state.token) state.token = getContract.getContractByName('USDT', rootState.web3)
+			if (!state.token) state.token = getContract.getContractByName('USDT', rootState.app.web3)
 		}
 		const state = {};
 		const mutations = {};
@@ -10,10 +10,10 @@ addBlackList ({rootState}, _evilUser){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.addBlackList(_evilUser).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.addBlackList(_evilUser).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -39,10 +39,10 @@ approve ({rootState}, {_spender,_value}){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.approve(_spender,_value).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.approve(_spender,_value).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -68,10 +68,10 @@ deprecate ({rootState}, _upgradedAddress){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.deprecate(_upgradedAddress).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.deprecate(_upgradedAddress).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -97,10 +97,10 @@ destroyBlackFunds ({rootState}, _blackListedUser){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.destroyBlackFunds(_blackListedUser).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.destroyBlackFunds(_blackListedUser).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -126,10 +126,10 @@ issue ({rootState}, amount){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.issue(amount).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.issue(amount).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -155,10 +155,10 @@ pause ({rootState} ){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.pause().estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.pause().send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -184,10 +184,10 @@ redeem ({rootState}, amount){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.redeem(amount).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.redeem(amount).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -213,10 +213,10 @@ removeBlackList ({rootState}, _clearedUser){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.removeBlackList(_clearedUser).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.removeBlackList(_clearedUser).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -242,10 +242,10 @@ setParams ({rootState}, {newBasisPoints,newMaxFee}){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.setParams(newBasisPoints,newMaxFee).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.setParams(newBasisPoints,newMaxFee).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -271,10 +271,10 @@ transfer ({rootState}, {_to,_value}){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.transfer(_to,_value).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.transfer(_to,_value).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -300,10 +300,10 @@ transferFrom ({rootState}, {_from,_to,_value}){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.transferFrom(_from,_to,_value).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.transferFrom(_from,_to,_value).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -329,10 +329,10 @@ transferOwnership ({rootState}, newOwner){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.transferOwnership(newOwner).estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.transferOwnership(newOwner).send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -358,10 +358,10 @@ unpause ({rootState} ){
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.unpause().estimateGas({
-                            from: rootState.account,
+                            from: rootState.app.account,
                         }).then(gas => {
                             state.token.methods.unpause().send({
-                                from: rootState.account,
+                                from: rootState.app.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]

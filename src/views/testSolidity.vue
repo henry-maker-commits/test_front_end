@@ -115,7 +115,7 @@ export default {
       }
     },
 
-    handleClick({name, abi}) {
+  async  handleClick({name, abi}) {
       let path = name + "/" + abi.name
       console.log(path)
       let values = abi.values
@@ -132,7 +132,7 @@ export default {
         }
       }
       console.log(path,params)
-      this.$store.dispatch(path,params).then(res => {console
+    await  this.$store.dispatch(path,params).then(res => {console
         alert(res)
       }).catch(err => {
         alert(err)

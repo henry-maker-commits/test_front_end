@@ -31,7 +31,7 @@ for (let i = files.length - 1; i >= 0; i--) {
     let tempFileStr = `
 		import getContract from "@/utils/abiUtil";
 		function judgeToken(rootState) {
-			if (!state.token) state.token = getContract.getContractByName('${name}', rootState.app.web3)
+			if (!state.token) state.token = getContract.getContractByName('${name}', rootState.web3)
 		}
 		const state = {};
 		const mutations = {};
@@ -107,10 +107,10 @@ for (let i = files.length - 1; i >= 0; i--) {
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.${functionObj.name}(${tempParamStr}).estimateGas({
-                            from: rootState.app.account,
+                            from: rootState.account,
                         }).then(gas => {
                             state.token.methods.${functionObj.name}(${tempParamStr}).send({
-                                from: rootState.app.account,
+                                from: rootState.account,
                                 gas: parseInt(gas * 1.2)
                             }).then(res => {
                                  let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
@@ -153,12 +153,12 @@ for (let i = files.length - 1; i >= 0; i--) {
                         judgeToken(rootState)
                         return new Promise((resolve,reject) => {
                             state.token.methods.${functionObj.name}(${tempParamStr}).estimateGas({
-                            from: rootState.app.account,
+                            from: rootState.account,
                         }).then(gas => {
                             state.token.methods.${functionObj.name}(${tempParamStr}).send({
-                                from: rootState.app.account,
+                                from: rootState.account,
                                 gas: parseInt(gas * 1.2),
-                                value: rootState.app.web3.utils.toWei(value)
+                                value: rootState.web3.utils.toWei(value)
                             }).then(res => {
                               let operateLogs = localStorage.getItem("operateLogs")?JSON.parse(localStorage.getItem("operateLogs")):[]
                               operateLogs.push({

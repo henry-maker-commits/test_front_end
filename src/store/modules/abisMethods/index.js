@@ -1,1 +1,1 @@
-import USDT from "@/store/modules/abisMethods/usdt";export default { USDT,}
+import USDT from "@/store/modules/abisMethods/USDT";export default { USDT,}
